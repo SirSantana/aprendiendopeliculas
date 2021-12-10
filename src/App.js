@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link
+  } from "react-router-dom";
+import styles from "./App.module.css";
+import { MovieGrid } from "./components/MovieGrid";
+import { MovieDetails } from "./pages/MovieDetails";
 
-function App() {
+
+
+export function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+        <header >
+            <Link to="/"><h2 className={styles.title}>Movies</h2></Link>
+        </header>
+        <main>
+            <Routes>
+                <Route path="/movies/:movieId" element={<MovieDetails/>}/>
+                <Route path="/" element={<MovieGrid/>}/>
+                
+            </Routes>
+        </main>
+    </Router>
+  )
 }
-
-export default App;
